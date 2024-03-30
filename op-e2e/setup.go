@@ -574,10 +574,6 @@ func (cfg SystemConfig) Start(t *testing.T, _opts ...SystemConfigOption) (*Syste
 			if err != nil {
 				fmt.Printf("failed to kill interceptor node: %v\n", err)
 			}
-			err = exec.Command("pkill", "-9", "peptide").Run()
-			if err != nil {
-				fmt.Printf("failed to kill peptide node: %v\n", err)
-			}
 		})
 
 		// now the interceptor has the geth client
@@ -714,7 +710,6 @@ func (cfg SystemConfig) Start(t *testing.T, _opts ...SystemConfigOption) (*Syste
 			}()
 		}
 
-		interceptornode.UpdateL2GenesisHash(&c.Rollup)
 		// Print information about genesis of rollup:
 		fmt.Printf(
 			"Rollup genesis hash: %s\nRollup genesis height: %d\n",
